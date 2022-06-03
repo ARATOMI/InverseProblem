@@ -63,7 +63,7 @@ class NFFitter(object):
         # tensor to dataset
         dataset_real = TensorDataset(y_real, X_cond)
         
-        criterion = nn.MSELoss()
+        # criterion = nn.MSELoss()
         
 
         # Fit GAN
@@ -77,8 +77,8 @@ class NFFitter(object):
                 y_pred = self.nf.sample(x_batch)
                 
                 # caiculate loss
-                #loss = -self.nf.log_prob(y_batch, x_batch)
-                loss = criterion(y_batch, y_pred)
+                loss = -self.nf.log_prob(y_batch, x_batch)
+                # loss = criterion(y_batch, y_pred)
                 
                 # optimization step
                 self.opt.zero_grad()
